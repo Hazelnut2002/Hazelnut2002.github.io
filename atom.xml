@@ -6,7 +6,7 @@
   <link href="http://hazelnut2002.github.io/atom.xml" rel="self"/>
   
   <link href="http://hazelnut2002.github.io/"/>
-  <updated>2022-08-29T15:40:15.166Z</updated>
+  <updated>2022-09-17T01:58:03.396Z</updated>
   <id>http://hazelnut2002.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在黑苹果上制作融合硬盘</title>
+    <link href="http://hazelnut2002.github.io/2022/09/17/%E5%9C%A8%E9%BB%91%E8%8B%B9%E6%9E%9C%E4%B8%8A%E5%88%B6%E4%BD%9C%E8%9E%8D%E5%90%88%E7%A1%AC%E7%9B%98/"/>
+    <id>http://hazelnut2002.github.io/2022/09/17/%E5%9C%A8%E9%BB%91%E8%8B%B9%E6%9E%9C%E4%B8%8A%E5%88%B6%E4%BD%9C%E8%9E%8D%E5%90%88%E7%A1%AC%E7%9B%98/</id>
+    <published>2022-09-17T01:45:31.215Z</published>
+    <updated>2022-09-17T01:58:03.396Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="读前必读"><a href="#读前必读" class="headerlink" title="读前必读"></a>读前必读</h1><p>1.转载本文请标明出处。</p><p>2.我写博客也是为了学习，所以文章中有不对的地方敬请指出。</p><p>3.感谢你的阅读。</p><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文通过利用苹果官网介绍修复被拆分的融合硬盘的方法，扩展到黑苹果上，给黑苹果也实现融合硬盘的储存方案。</p><h1 id="须知"><a href="#须知" class="headerlink" title="须知"></a>须知</h1><p>什么是融合硬盘？就是简单来讲就是一个固态硬盘搭配一个机械硬盘，将其合成一个宗卷共享容量，macOS会根据学习用户的使用习惯来分配什么文件放在固态，什么文件放在机械，这样就可以用低成本来兼具速度与容量。</p><p>这种方案适合大部分使用黑苹果来办公的用户，我使用黑苹果来做文字工作、影音娱乐等，这种情况我没有感觉到速度比使用纯固态硬盘时候慢。假如你的工作对硬盘速度要求特别高，还是建议你采用纯固态硬盘的储存方案。</p><p>本文的操作将会抹掉你要操作的SSD+HDD上的所有数据！请在操作前备份你的重要资料，建议使用Time Machine。</p><p>官方的一些操作指引：</p><p>如何创建可引导的 macOS 安装器：<a href="https://support.apple.com/zh-cn/HT201372">https://support.apple.com/zh-cn/HT201372</a></p><p>如何修复拆分的融合硬盘：<a href="https://support.apple.com/zh-cn/HT207584">https://support.apple.com/zh-cn/HT207584</a></p><p>使用“时间机器”备份您的 Mac：<a href="https://support.apple.com/zh-cn/HT201250">https://support.apple.com/zh-cn/HT201250</a></p><p>从备份恢复 Mac：<a href="https://support.apple.com/zh-cn/HT203981">https://support.apple.com/zh-cn/HT203981</a></p><h1 id="开始融合"><a href="#开始融合" class="headerlink" title="开始融合"></a>开始融合</h1><h2 id="本文的操作分为两种情况进行介绍："><a href="#本文的操作分为两种情况进行介绍：" class="headerlink" title="本文的操作分为两种情况进行介绍："></a>本文的操作分为两种情况进行介绍：</h2><p>第一种情况：你的电脑内置有且仅有两块硬盘，为SSD+HDD。或是可以将多余的硬盘断开连接，安装系统时只连接目标的SSD+HDD，在装完系统之后可以将其他硬盘重新连接。</p><p>第二种情况：你的电脑内置硬盘数量&gt;2，且不能断开连接。</p><p>我先介绍一下我的电脑：</p><p>8代i7，GTX 650Ti，OpenCore 0.8.2，装了4块硬盘：</p><p>SSD1：容量120G，SATA，用于抹掉制作融合硬盘</p><p>HDD1：容量500G，用于抹掉制作融合硬盘</p><p>SSD2：容量120G，SATA，用于安装Windows，安装时移除</p><p>HDD2：容量750G，用于Time Machine备份，安装时移除</p><h3 id="1-先来看第一种情况如何操作："><a href="#1-先来看第一种情况如何操作：" class="headerlink" title="1.先来看第一种情况如何操作："></a>1.先来看第一种情况如何操作：</h3><h4 id="1-1如果你要安装macOS-Mojave及以后的系统"><a href="#1-1如果你要安装macOS-Mojave及以后的系统" class="headerlink" title="1.1如果你要安装macOS Mojave及以后的系统"></a>1.1如果你要安装macOS Mojave及以后的系统</h4><p>制作你对应系统的可引导安装器，启动后打开终端，直接输入 </p><pre><code>diskutil resetFusion</code></pre><p>并回车，在是否确认时输入 Yes，融合硬盘就已经制作完成，此时只需退出终端，正常程序安装系统即可。如果安装失败，就再回到可引导安装器进入磁盘工具，把融合硬盘内的分区抹掉成macOS扩展（日志式）再重新安装系统。</p><p><a href="https://postimg.cc/2qh7bBfg" target="_blank"><img src="https://i.postimg.cc/QMn4zpYN/1.png" alt="1"/></a></p><p><a href="https://postimg.cc/F7HpWRjJ" target="_blank"><img src="https://i.postimg.cc/WbMy4qzS/2.jpg" alt="2"/></a></p><h4 id="1-2如果你要安装macOS-High-Sierra及以前的系统"><a href="#1-2如果你要安装macOS-High-Sierra及以前的系统" class="headerlink" title="1.2如果你要安装macOS High Sierra及以前的系统"></a>1.2如果你要安装macOS High Sierra及以前的系统</h4><p>制作你对应系统的可引导安装器，启动后打开终端，输入</p><pre><code>diskutil list</code></pre><p>并回车，找到你需要制作的硬盘路径：</p><p><a href="https://postimg.cc/Fk9pQF88" target="_blank"><img src="https://i.postimg.cc/zvhcKVjz/3.jpg" alt="3"/></a></p><p>我的HDD是disk0，SSD是disk1</p><p>然后输入并回车：</p><pre><code>diskutil cs create Macintosh\ HD disk1 disk0</code></pre><p>等待终端跑完，这时我们可以看到如下显示：</p><p><a href="https://postimg.cc/G9QzxYsC" target="_blank"><img src="https://i.postimg.cc/rF6bcNVK/4.jpg" alt="4"/></a></p><p>引号内的就是我们需要的，我们把它拷贝，然后输入并回车：</p><pre><code>diskutil cs createVolume 引号内的 jhfs+ Macintosh\ HD 100%</code></pre><p>示例：</p><pre><code>diskutil cs createVolume 833541AB-2DE2-4588-B8F6-2EFA410421C2 jhfs+ Macintosh\ HD 100%</code></pre><p>然后退出终端，按照正常程序安装系统即可。</p><h3 id="2-如果你是第二种情况："><a href="#2-如果你是第二种情况：" class="headerlink" title="2.如果你是第二种情况："></a>2.如果你是第二种情况：</h3><h4 id="2-1-如果你要安装macOS-Catalina及以前的系统"><a href="#2-1-如果你要安装macOS-Catalina及以前的系统" class="headerlink" title="2.1 如果你要安装macOS Catalina及以前的系统"></a>2.1 如果你要安装macOS Catalina及以前的系统</h4><p>方法和1.2一致，只不过你要更细心一点找到你的目标磁盘路径。</p><h4 id="2-2如果你要安装macOS-Big-Sur及以后的系统"><a href="#2-2如果你要安装macOS-Big-Sur及以后的系统" class="headerlink" title="2.2如果你要安装macOS Big Sur及以后的系统"></a>2.2如果你要安装macOS Big Sur及以后的系统</h4><p>你需要制作两份可引导安装器，一份为macOS Catalina或者之前的系统，一份为你要安装的目标系统。</p><p>首先按照1.2的步骤，在旧版本系统的终端中将硬盘融合，然后进入你的目标系统安装器进行安装即可。</p><h1 id="安装完成！"><a href="#安装完成！" class="headerlink" title="安装完成！"></a>安装完成！</h1><p>安装完系统之后，你可以恢复备份，就可以正常使用了：</p><p><a href="https://postimg.cc/bd83nLrg" target="_blank"><img src="https://i.postimg.cc/RCJ8jDzk/5.jpg" alt="5"/></a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;读前必读&quot;&gt;&lt;a href=&quot;#读前必读&quot; class=&quot;headerlink&quot; title=&quot;读前必读&quot;&gt;&lt;/a&gt;读前必读&lt;/h1&gt;&lt;p&gt;1.转载本文请标明出处。&lt;/p&gt;
+&lt;p&gt;2.我写博客也是为了学习，所以文章中有不对的地方敬请指出。&lt;/p&gt;
+&lt;p&gt;3.感谢你</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>我的一点点个人观点</title>
