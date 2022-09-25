@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://hazelnut2002.github.io/2022/09/25/%E4%BD%BF%E7%94%A8Real-ESRGAN%E5%AF%B9%E5%9B%BE%E7%89%87%E8%BF%9B%E8%A1%8C%E7%94%BB%E8%B4%A8%E5%A2%9E%E5%BC%BA/</loc>
+    
+    <lastmod>2022-09-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://hazelnut2002.github.io/2022/09/17/%E5%9C%A8%E9%BB%91%E8%8B%B9%E6%9E%9C%E4%B8%8A%E5%88%B6%E4%BD%9C%E8%9E%8D%E5%90%88%E7%A1%AC%E7%9B%98/</loc>
     
     <lastmod>2022-09-17</lastmod>
@@ -19,28 +28,10 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>http://hazelnut2002.github.io/2022/08/28/hello-world%20copy/</loc>
-    
-    <lastmod>2022-08-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://hazelnut2002.github.io/2022/08/28/hello-world/</loc>
-    
-    <lastmod>2022-08-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>http://hazelnut2002.github.io/</loc>
-    <lastmod>2022-09-17</lastmod>
+    <lastmod>2022-09-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

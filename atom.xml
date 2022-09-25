@@ -6,7 +6,7 @@
   <link href="http://hazelnut2002.github.io/atom.xml" rel="self"/>
   
   <link href="http://hazelnut2002.github.io/"/>
-  <updated>2022-09-17T01:58:03.396Z</updated>
+  <updated>2022-09-25T06:30:52.604Z</updated>
   <id>http://hazelnut2002.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用Real-ESRGAN对图片进行画质增强</title>
+    <link href="http://hazelnut2002.github.io/2022/09/25/%E4%BD%BF%E7%94%A8Real-ESRGAN%E5%AF%B9%E5%9B%BE%E7%89%87%E8%BF%9B%E8%A1%8C%E7%94%BB%E8%B4%A8%E5%A2%9E%E5%BC%BA/"/>
+    <id>http://hazelnut2002.github.io/2022/09/25/%E4%BD%BF%E7%94%A8Real-ESRGAN%E5%AF%B9%E5%9B%BE%E7%89%87%E8%BF%9B%E8%A1%8C%E7%94%BB%E8%B4%A8%E5%A2%9E%E5%BC%BA/</id>
+    <published>2022-09-25T06:20:04.494Z</published>
+    <updated>2022-09-25T06:30:52.604Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="读前必读"><a href="#读前必读" class="headerlink" title="读前必读"></a>读前必读</h1><p>1.该项目的地址<a href="https://github.com/xinntao/Real-ESRGAN">https://github.com/xinntao/Real-ESRGAN</a></p><p>2.本文仅为个人使用的一些技巧分享，项目的相关权利归该作者所有。</p><p>3.转载本文请标明出处。</p><p>4.我写博客也是为了学习，所以文章中有不对的地方敬请指出。</p><p>5.感谢你的阅读。</p><h1 id="开始前"><a href="#开始前" class="headerlink" title="开始前"></a>开始前</h1><p>本文写于2022年7月30日。</p><p>相信大家对AI修复技术都有所听闻，该技术的其中一个用途就是通过对机器学习模型的应用，来对一些分辨率不够高的图片进行算法画质增强，本文就来介绍一下Real-ESRGAN的使用方法。</p><p>我使用的操作平台及系统：MacBook Pro M1，macOS Monterey 12.5。</p><h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>首先我们来到项目的Release页面：<a href="https://github.com/xinntao/Real-ESRGAN/releases">https://github.com/xinntao/Real-ESRGAN/releases</a><br>找到适用于你操作系统的版本进行下载。下载完成后呢，解压之后，macOS版本会得到这样一个文件夹：<br><a href="https://postimg.cc/hQfX7xLM" target="_blank"><img src="https://i.postimg.cc/RhTKyLNr/1.png" alt="1"/></a><br/><br/><br>里面包含的文件有图片以及视频的demo，训练好的机器学习模型、使用说明以及可执行文件。</p><h1 id="开始修复"><a href="#开始修复" class="headerlink" title="开始修复"></a>开始修复</h1><p>本文就拿小游戏Moe Era中希玛姐姐的图片来进行一个演示。该图片在游戏的steam页面下载，初始分辨率为1920x1080。我采用的是默认模型，它将图片的分辨率扩展至原来的16倍，也就是7680x4320，8K分辨率。</p><p>首先我们选中那个下载到的文件夹，然后点击访达&gt;服务&gt;新建位于文件夹位置的终端标签页，当然你也可以在设置中为其设置一个快捷键。</p><p><a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/cHwQMSWL/2.png" alt="2"/></a><br/><br/><br><a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/brP1mBYH/3.png" alt="3"/></a><br/><br/><br><a href="https://postimg.cc/v4Wc9GnR" target="_blank"><img src="https://i.postimg.cc/JzFJfn4h/4.png" alt="4"/></a><br/><br/><a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/qMj2GwPy/5.png" alt="5"/></a><br/><br/></p><p>我们把想要被算法的图片放进文件夹，并将其命名为：input.jpg（可以不用这个名字或者扩展名，在后面输入终端命令时改相应的图片名字就可以。</p><p>然后在终端中输入指令后回车：<br><code>./realesrgan-ncnn-vulkan -i input.jpg -o output.jpg</code><br><a href="https://postimg.cc/DSVS8S8d" target="_blank"><img src="https://i.postimg.cc/kgGKY8CZ/6.png" alt="6"/></a><br/><br/><br>这时我们可能会收到一个拒绝反馈，如图：</p><p><a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/SQL6nkVZ/7.png" alt="7"/></a><br/><br/></p><p>只需要输入并回车：<br><code>chmod u+x realesrgan-ncnn-vulkan</code></p><p>再输入刚才的<br><code>./realesrgan-ncnn-vulkan -i input.jpg -o output.jpg</code><br>并回车就可以了。</p><p><a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/pX2D846P/8.png" alt="8"/></a><br/><br/></p><h1 id="修复完成！"><a href="#修复完成！" class="headerlink" title="修复完成！"></a>修复完成！</h1><p>当看到这样的页面，就说明算法修复已经完成了，可以看到文件夹中多了一个output.jpg，这个就是输出的文件。</p><p><a href="https://postimg.cc/5Yt0ZvR1" target="_blank"><img src="https://i.postimg.cc/PxWwvQbL/9.png" alt="9"/></a><br/><br/></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;读前必读&quot;&gt;&lt;a href=&quot;#读前必读&quot; class=&quot;headerlink&quot; title=&quot;读前必读&quot;&gt;&lt;/a&gt;读前必读&lt;/h1&gt;&lt;p&gt;1.该项目的地址&lt;a href=&quot;https://github.com/xinntao/Real-ESRGAN&quot;&gt;https</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>在黑苹果上制作融合硬盘</title>
@@ -53,47 +73,6 @@
     <summary type="html">&lt;p&gt;Hi! 我这人没什么文化，文笔不好，写出来东西语无伦次，不过意思应该能读懂。&lt;/p&gt;
 &lt;p&gt;加了我微信的人也许会发现，以前经常发朋友圈的我，好久没发朋友圈了。&lt;/p&gt;
 &lt;p&gt;2022年的某一个夏天晚上我睡不着，就翻看了我自己从2013年初注册微信开始的每一条朋友圈，确实，它</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://hazelnut2002.github.io/2022/08/28/hello-world%20copy/"/>
-    <id>http://hazelnut2002.github.io/2022/08/28/hello-world%20copy/</id>
-    <published>2022-08-28T07:12:23.739Z</published>
-    <updated>2022-08-28T08:30:26.238Z</updated>
-    
-    <content type="html"><![CDATA[<p>Testing</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;Testing&lt;/p&gt;
-</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://hazelnut2002.github.io/2022/08/28/hello-world/"/>
-    <id>http://hazelnut2002.github.io/2022/08/28/hello-world/</id>
-    <published>2022-08-28T07:12:23.739Z</published>
-    <updated>2022-08-28T07:12:23.739Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
       
     
     
